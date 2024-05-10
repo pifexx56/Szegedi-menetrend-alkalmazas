@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "906114947737",
+    "project_id": "szktapp-80968",
+    "storage_bucket": "szktapp-80968.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906114947737:android:f74c3be53b82f547883608",
+        "android_client_info": {
+          "package_name": "com.cseradam.szkt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCfdSZFbrE8DBQ5dXLeRQno5vxlgpIkPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SZKT</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="email_address">Email cím:</string>
+    <string name="password">Jelszó:</string>
+    <string name="registration">Regisztráció</string>
+    <string name="passwordAgin">Jelszó mégegyszer:</string>
+</resources>
