@@ -1,6 +1,7 @@
 package com.cseradam.szkt;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,10 +31,11 @@ import java.util.Map;
 
 public class Lines_Activity extends AppCompatActivity {
 
-    private static final String TAG = "android.os.Bundle";
+    private static final String TAG = "Krumplis";
     private ArrayList<Line> lines;
     private RecyclerView recyclerView;
     private LineAdapter lineAdapter;
+    private FirebaseAuth auth;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,13 @@ public class Lines_Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() == null)
+        {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         lines = new ArrayList<Line>();
         Log.d(TAG, getIntent().getStringExtra("stop_name"));
@@ -60,6 +70,7 @@ public class Lines_Activity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Stops").document(stopName).collection("lines")
+                .orderBy("lineNumber")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -79,34 +90,6 @@ public class Lines_Activity extends AppCompatActivity {
                         Log.w("Firestore", "Error getting documents", e);
                     }
                 });
-
-
-
-//// Létrehozunk egy listát az időpontokkal
-//        List<String> times = Arrays.asList("12:15", "13:45");
-//
-//// Létrehozunk egy Map-et az időpontokkal
-//        Map<String, Object> timesMap = new HashMap<>();
-//        timesMap.put("times", times);
-//        Map<String, String> asd = new HashMap<>();
-//        asd.put("Ez egy", "Az egy");
-//
-//// Feltöltjük az adatbázist
-//        db.collection("Stops").document("Vásárhelyi Pál utca").collection("90").document("times").set(timesMap);
-//        db.collection("Stops").document("Vásárhelyi Pál utca").collection("2").document("times").set(timesMap);
-//        db.collection("Stops").document("Annakút").collection("90").document("times").set(timesMap);
-//        db.collection("Stops").document("Annakút").set(asd);
-//
-//        Map<String, String> terminusMap90 = new HashMap<>();
-//        terminusMap90.put("terminus", "Szegedi Vasútállomás");
-//        db.collection("Stops").document("Vásárhelyi Pál utca").collection("90").document("terminus").set(terminusMap90);
-//
-//        Map<String, String> terminusMap2 = new HashMap<>();
-//        terminusMap2.put("terminus", "Európa liget");
-//        db.collection("Stops").document("Vásárhelyi Pál utca").collection("2").document("terminus").set(terminusMap2);
-//        db.collection("Stops").document("Annakút").collection("2").document("terminus").set(terminusMap2);
-
-
 
     }
 }

@@ -8,6 +8,18 @@
         />
 
     <item
+        android:title="Értesítés indulásról"
+        android:id="@+id/Reminder"
+        app:showAsAction = "never"
+        />
+
+    <item
+        android:title="Admin Panel"
+        android:id="@+id/admin"
+        app:showAsAction = "never"
+        />
+
+    <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Search"

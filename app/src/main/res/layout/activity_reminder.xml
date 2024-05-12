@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="75dp">
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A megálló neve:" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stop_name_reminder"
+        />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Az értesítés a beállított idő előtt 5 perccel fog megjelenni." />
+
+
+    <Button
+        android:id="@+id/setReminderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="callSetReminder"
+        android:text="Időzíő állítása" />
+
+
+    <TextView
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kérjük, engedélyezze az értesítéseket az alkalmazás beállításaiban." />
+
+    <Button
+        android:id="@+id/enableNotificationsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openNotificationSettings"
+        android:text="Értesítések engedélyezése" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="callMainPage"
+        android:text="Vissza" />
+
+</LinearLayout>

@@ -55,6 +55,7 @@ public class Register extends AppCompatActivity {
     {
         Intent login = new Intent(this, MainActivity.class);
         startActivity(login);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     public void register(View view)
