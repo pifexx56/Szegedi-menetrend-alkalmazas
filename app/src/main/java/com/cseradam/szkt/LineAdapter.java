@@ -3,6 +3,8 @@ package com.cseradam.szkt;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.view.ViewGroup;
 
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class LineAdapter extends RecyclerView.Adapter<LineAdapter.LineViewHolder> {
     private ArrayList<Line> lines;
     private Context mContext;
+    private  int lastPosition = -1;
 
     public LineAdapter(Context mContext, ArrayList<Line> lines) {
         this.lines = lines;
@@ -30,6 +33,14 @@ public class LineAdapter extends RecyclerView.Adapter<LineAdapter.LineViewHolder
     public void onBindViewHolder(@NonNull LineViewHolder holder, int position) {
         Line currentLine = lines.get(position);
         holder.bindTo(currentLine);
+
+
+        if (holder.getAdapterPosition() > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.stop_item_animation);
+            holder.itemView.startAnimation(animation);
+            lastPosition = holder.getAdapterPosition();
+        }
     }
 
     @Override
