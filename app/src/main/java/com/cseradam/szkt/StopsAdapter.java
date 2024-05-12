@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -20,7 +22,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.ViewHolder> 
     private ArrayList<Stop> stopsAll;
     private ArrayList<Stop> stops;
     private Context mContext;
-    private int lastposition = -1;
+    private int lastPosition = -1;
 
     public StopsAdapter(Context mContext, ArrayList<Stop> stops) {
         this.stops = stops;
@@ -38,6 +40,14 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull StopsAdapter.ViewHolder holder, int position) {
         Stop currentItem = stops.get(position);
         holder.bindTo(currentItem);
+
+        if (holder.getAdapterPosition() > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.stop_item_animation);
+            holder.itemView.startAnimation(animation);
+            lastPosition = holder.getAdapterPosition();
+        }
+
     }
 
     @Override

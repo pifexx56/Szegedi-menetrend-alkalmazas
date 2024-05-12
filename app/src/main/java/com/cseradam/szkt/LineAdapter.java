@@ -53,6 +53,7 @@ public class LineAdapter extends RecyclerView.Adapter<LineAdapter.LineViewHolder
             line_number.setText(currentLine.getNumber());
             line_terminus.setText(currentLine.getTerminusz());
             line_times.setText(currentLine.getTimes().toString());
+            line_times.setSelected(true);
         }
     }
 }
